@@ -4,12 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void	*clean(char **arr)
+static void	clean(char **arr)
 {
 	while (*arr)
 		free(*arr);
 	free(arr);
-	return (NULL);
 }
 
 int len(char **strs) {
@@ -57,6 +56,8 @@ int main() {
 	printf("Starting ft_split tests...\n");
 	char splitstr[] = "cccaijnckla89amccs0sc86cas j888c8c11288cccccc";
 	char **split = ft_split(splitstr, 'c');
+	if (split == NULL)
+		printf("Malloc failed.\n");
 	int size = len(split);
 	if (size != 7)
 		printf("ft_split() lenght test failed.\nString introduced: %s\nDelimiter: %c\nLenght expected: 7\nLenght: %d\n\n", splitstr, 'c', size);
@@ -95,5 +96,65 @@ int main() {
 		printf("strlen test failed for \"%s\"\n", strlen3);
 
 	// strlcpy test
-	
+	printf("Starting strlcpy tests...\n");
+
+	char buff1[4];
+	char buff2[12];
+	char buff2small[3];
+	char buff3[12];
+	char buff3small[5];
+
+	size_t buff1res = ft_strlcpy(buff1, strlen1, 4);
+	size_t buff2res = ft_strlcpy(buff2, strlen2, 12);
+	size_t buff2smallres = ft_strlcpy(buff2small, strlen2, 3);
+	size_t buff3res = ft_strlcpy(buff3, strlen3, 12);
+	size_t buff3smallres = ft_strlcpy(buff3small, strlen3, 5);
+
+	if (buff1res != 0 || strcmp(buff1, strlen1) != 0)
+		printf("strlcpy test failed for empty string with buffer size 4\n");
+	if (buff2res != 8 || strcmp(buff2, strlen2) != 0)
+		printf("strlcpy test failed for \"%s\" with buffer size 12\nExpected ->\nResult: 8\nDest: sfs t4eg\n\nGot instead ->\nResult: %d\nDest: %s\n\n", strlen2, (int)buff2res, buff2);
+	if (buff2smallres != 8 || strcmp(buff2small, "sf") != 0)
+		printf("strlcpy test failed for \"%s\" with buffer size 3\nExpected ->\nResult: 8\nDest: sf\n\nGot instead ->\nResult: %d\nDest: %s\n\n", strlen2, (int)buff2smallres, buff2small);
+	if (buff3res != 10 || strcmp(buff3, strlen3) != 0)
+		printf("strlcpy test failed for \"%s\" with buffer size 12\nExpected ->\nResult: 10\nDest: hyew3d!`X~\n\nGot instead ->\nResult: %d\nDest: %s\n\n", strlen3, (int)buff3res, buff3);
+	if (buff3smallres != 10 || strcmp(buff3small, "hyew") != 0)
+		printf("strlcpy test failed for \"%s\" with buffer size 5\nExpected ->\nResult: 10\nDest: hyew\n\nGot instead ->\nResult: %d\nDest: %s\n\n", strlen3, (int)buff3smallres, buff3small);
+
+	// strlcat test
+	printf("Starting strlcat tests...\n");
+
+	char cat1[3] = "e";
+	char cat2[15] = "eri";
+	char cat3[11] = "eomae";
+
+	int size_exp1t = strlen(cat1) + strlen(strlen1);
+	size_t res1t = ft_strlcat(cat1, strlen1, 3);
+	if (size_exp1t != res1t)
+		printf("ft_strlcat lenght test failed, check the return value.");
+	if (strcmp(cat1, "e") != 0)
+		printf("ft_strlcat test failed for appending an empty string to \"e\", result: %s\n", cat1);
+
+	int size_exp1 = strlen(cat1) + strlen(strlen3);
+	size_t res1 = ft_strlcat(cat1, strlen3, 3);
+	if (size_exp1 != res1)
+		printf("ft_strlcat lenght test failed, check the return value.");
+	if (strcmp(cat1, "eh") != 0)
+		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"e\" with buff size 3, result: %s\n", cat1);
+
+	int size_exp2 = strlen(cat2) + strlen(strlen3);
+	size_t res2 = ft_strlcat(cat2, strlen3, 15);
+	if (size_exp2 != res2)
+		printf("ft_strlcat lenght test failed, check the return value.");
+	if (strcmp(cat2, "erihyew3d!`X~") != 0)
+		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"eri\" with buff size 15, result: %s\n", cat2);
+
+	int size_exp3 = strlen(cat3) + strlen(strlen3);
+	size_t res3 = ft_strlcat(cat3, strlen3, 11);
+	if (size_exp3 != res3)
+		printf("ft_strlcat lenght test failed, check the return value.");
+	if (strcmp(cat3, "eomaehyew3D!`X~") != 0)
+		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"eomae\" with buff size 11, result: %s\n", cat3);
+
+	// 
 }
