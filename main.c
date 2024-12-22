@@ -230,5 +230,66 @@ int main() {
 	// ft_strjoin test
 	printf("Starting ft_strjoin tests...\n");
 
+	char joint1[] = "";
+	char joint2[] = "hola";
+	char joint3[] = " que tal";
 
+	char *join1 = ft_strjoin(joint2, joint1);
+	char *join2 = ft_strjoin(joint1, joint3);
+	char *join3 = ft_strjoin(joint2, joint3);
+
+	if (join1 == NULL)
+		printf("ft_strjoin for join1 malloc failed.\n");
+	if (join2 == NULL)
+		printf("ft_strjoin for join2 malloc failed.\n");
+	if (join3 == NULL)
+		printf("ft_strjoin for join3 malloc failed.\n");
+
+	if (strcmp(join1, "hola") != 0)
+		printf("ft_strjoin test 1 failed, introduced \"%s\" and \"%s\", expected \"%s\" but got \"%s\"\n", joint2, joint1, "hola", join1);
+	if (strcmp(join2, " que tal") != 0)
+		printf("ft_strjoin test 2 failed, introduced \"%s\" and \"%s\", expected \"%s\" but got \"%s\"\n", joint1, joint3, " que tal", join2);
+	if (strcmp(join3, "hola que tal") != 0)
+		printf("ft_strjoin test 3 failed, introduced \"%s\" and \"%s\", expected \"%s\" but got \"%s\"\n", joint2, joint3, "hola que tal", join3);
+
+	if (join1 != NULL) free(join1);
+	if (join2 != NULL) free(join2);
+	if (join3 != NULL) free(join3);
+
+	// ft_strtrim test
+	printf("Starting ft_strtrim tests...\n");
+
+	char origin[] = "fsodoowbsha";
+	char trim_mat1[] = "shaw";
+	char trim_mat2[] = "odo";
+	char trim_mat3[] = "afs";
+	char trim_mat4[] = "oowbsh";
+
+	char *trim1 = ft_strtrim(origin, trim_mat1);
+	char *trim2 = ft_strtrim(origin, trim_mat2);
+	char *trim3 = ft_strtrim(origin, trim_mat3);
+	char *trim4 = ft_strtrim(origin, trim_mat4);
+
+	if (trim1 == NULL)
+		printf("ft_strtrim trim1 malloc failed\n");
+	if (trim2 == NULL)
+		printf("ft_strtrim trim2 malloc failed\n");
+	if (trim3 == NULL)
+		printf("ft_strtrim trim3 malloc failed\n");
+	if (trim4 == NULL)
+		printf("ft_strtrim trim4 malloc failed\n");
+
+	if (strcmp(trim1, origin) != 0)
+		printf("ft_strtrim failed, original str \"%s\", trim \"%s\", expected \"%s\", got \"%s\"\n", origin, trim_mat1, origin, trim1);
+	if (strcmp(trim2, "fsowbsha") != 0)
+		printf("ft_strtrim failed, original str \"%s\", trim \"%s\", expected \"%s\", got \"%s\"\n", origin, trim_mat2, "fsowbsha", trim2);
+	if (strcmp(trim3, origin) != 0)
+		printf("ft_strtrim failed, original str \"%s\", trim \"%s\", expected \"%s\", got \"%s\"\n", origin, trim_mat3, origin, trim3);
+	if (strcmp(trim4, "fsoda") != 0)
+		printf("ft_strtrim failed, original str \"%s\", trim \"%s\", expected \"%s\", got \"%s\"\n", origin, trim_mat4, "fsoda", trim4);
+
+	if (trim1 != NULL) free(trim1);
+	if (trim2 != NULL) free(trim2);
+	if (trim3 != NULL) free(trim3);
+	if (trim4 != NULL) free(trim4);
 }
