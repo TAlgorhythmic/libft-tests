@@ -2,7 +2,7 @@ NAME = libft-tests
 
 CC = clang
 
-FLAGS = -Wall -Wextra -Werror -I./../
+FLAGS = -Wall -Wextra -Werror -I./../ -g
 
 SRC = main.c
 

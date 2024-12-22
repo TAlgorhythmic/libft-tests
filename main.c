@@ -3,11 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 static void	clean(char **arr)
 {
-	while (*arr)
-		free(*arr);
+	int i = 0;
+
+	while (arr[i])
+		free(arr[i++]);
 	free(arr);
 }
 
@@ -19,19 +22,23 @@ int len(char **strs) {
 	return i;
 }
 
+int check(int i1, int i2) {
+	return (i1 == i2 || (i1 > 0 && i2 > 0));
+}
+
 int main() {
 	// Char tests
 	printf("Starting char tests...\n");
 	for (int i = 0; i < 256; i++) {
-		if (isalpha(i) != ft_isalpha(i))
+		if (!check(isalpha(i), ft_isalpha(i)))
 			printf("ft_isalpha() test failed for ascii %d\n", i);
-		if (isdigit(i) != ft_isdigit(i))
+		if (!check(isdigit(i), ft_isdigit(i)))
 			printf("ft_isdigit() test failed for ascii %d\n", i);
-		if (isalnum(i) != ft_isalnum(i))
+		if (!check(isalnum(i), ft_isalnum(i)))
 			printf("ft_isalnum() test failed for ascii %d\n", i);
-		if (isascii(i) != ft_isascii(i))
+		if (!check(isascii(i), ft_isascii(i)))
 			printf("ft_isascii() test failed for ascii %d\n", i);
-		if (isprint(i) != ft_isprint(i))
+		if (!check(isprint(i), ft_isprint(i)))
 			printf("ft_isprint() test failed for ascii %d\n", i);
 	}
 	
@@ -128,33 +135,70 @@ int main() {
 	char cat2[15] = "eri";
 	char cat3[11] = "eomae";
 
-	int size_exp1t = strlen(cat1) + strlen(strlen1);
+	size_t size_exp1t = strlen(cat1) + strlen(strlen1);
 	size_t res1t = ft_strlcat(cat1, strlen1, 3);
 	if (size_exp1t != res1t)
 		printf("ft_strlcat lenght test failed, check the return value.");
 	if (strcmp(cat1, "e") != 0)
 		printf("ft_strlcat test failed for appending an empty string to \"e\", result: %s\n", cat1);
 
-	int size_exp1 = strlen(cat1) + strlen(strlen3);
+	size_t size_exp1 = strlen(cat1) + strlen(strlen3);
 	size_t res1 = ft_strlcat(cat1, strlen3, 3);
 	if (size_exp1 != res1)
 		printf("ft_strlcat lenght test failed, check the return value.");
 	if (strcmp(cat1, "eh") != 0)
 		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"e\" with buff size 3, result: %s\n", cat1);
 
-	int size_exp2 = strlen(cat2) + strlen(strlen3);
+	size_t size_exp2 = strlen(cat2) + strlen(strlen3);
 	size_t res2 = ft_strlcat(cat2, strlen3, 15);
 	if (size_exp2 != res2)
 		printf("ft_strlcat lenght test failed, check the return value.");
-	if (strcmp(cat2, "erihyew3d!`X~") != 0)
+	if (strcmp(cat2, "erihyew3D!`X~") != 0)
 		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"eri\" with buff size 15, result: %s\n", cat2);
 
-	int size_exp3 = strlen(cat3) + strlen(strlen3);
+	size_t size_exp3 = strlen(cat3) + strlen(strlen3);
 	size_t res3 = ft_strlcat(cat3, strlen3, 11);
 	if (size_exp3 != res3)
 		printf("ft_strlcat lenght test failed, check the return value.");
-	if (strcmp(cat3, "eomaehyew3D!`X~") != 0)
+	if (strcmp(cat3, "eomaehyew3") != 0)
 		printf("ft_strlcat test failed for appending \"hyew3D!`X~\" to \"eomae\" with buff size 11, result: %s\n", cat3);
+
+	// ft_strchr test
+	printf("Starting ft_strchr tests...\n");
+
+	char strtest[] = "gwsei762lkkls";
+	if (strchr(strtest, 'c') != ft_strchr(strtest, 'c'))
+		printf("ft_strchr test failed, expected NULL but found something else\n");
+	if (strcmp(strchr(strtest, 's'), ft_strchr(strtest, 's')) != 0)
+		printf("ft_strchr test failed, expected \"%s\" but found \"%s\"\n", strchr(strtest, 's'), ft_strchr(strtest, 's'));
+
+	// ft_strrchr test
+	printf("Starting ft_strrchr tests...\n");
+
+	if (strchr(strtest, 'c') != ft_strchr(strtest, 'c'))
+		printf("ft_strchr test failed, expected NULL but found something else\n");
+	if (strcmp(strchr(strtest, 'k'), ft_strchr(strtest, 'k')) != 0)
+		printf("ft_strchr test failed, expected \"%s\" but found \"%s\"\n", strchr(strtest, 'k'), ft_strchr(strtest, 'k'));
+
+	// ft_strncmp test
+	printf("Starting ft_strncmp tests...\n");
+
+	if (strncmp(strtest, "gwsei762lkkls", 10) != ft_strncmp(strtest, "gwsei762lkkls", 10))
+		printf("ft_strncmp test failed, result differs.");
+	if (strncmp("1234567", "12347", 4) != ft_strncmp("1234567", "12347", 4))
+		printf("ft_strncmp test failed, result differs.\nExpected: %d\nGot: %d\n", strncmp("1234567", "12347", 4), ft_strncmp("1234567", "12347", 4));
+
+	// ft_strnstr test
+	printf("Starting ft_strnstr tests...\n");
+
+	if (ft_strnstr(strtest, "sei6", 8) != NULL)
+		printf("ft_strnstr test failed, origin = %s, introduced = sei6, len = 4, expected NULL but found something else.", strtest);
+	if (strcmp(ft_strnstr(strtest, "sei7", 7), "sei762lkkls") != 0)
+		printf("ft_strnstr test failed, origin = %s, introduced = sei7, len = 7, expected %s but found something else.", strtest, "sei762lkkls");
+	if (ft_strnstr(strtest, "sei7", 4) != NULL)
+		printf("ft_strnstr test failed, origin = %s, introduced = sei7, len = 4, expected NULL but found something else.", strtest);
+	if (strcmp(ft_strnstr(strtest, "sei76", 89), "sei762lkkls") != 0)
+		printf("ft_strnstr test failed, origin = %s, introduced = sei76, len = 89, expected %s but found something else.", strtest, "sei762lkkls");
 
 	// 
 }
