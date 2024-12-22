@@ -305,6 +305,8 @@ int main() {
 	char atoi7[] = "+++6334  33";
 	char atoi8[] = "  43r";
 	char atoi9[] = " \t\v\n\v\v\v\t  \n   -37755_4";
+	char atoi10[] = "2147483647";
+	char atoi11[] = "-2147483648";
 
 	int builtin1 = atoi(atoi1); int ft1 = ft_atoi(atoi1);
 	int builtin2 = atoi(atoi2); int ft2 = ft_atoi(atoi2);
@@ -315,6 +317,8 @@ int main() {
 	int builtin7 = atoi(atoi7); int ft7 = ft_atoi(atoi7);
 	int builtin8 = atoi(atoi8); int ft8 = ft_atoi(atoi8);
 	int builtin9 = atoi(atoi9); int ft9 = ft_atoi(atoi9);
+	int builtin10 = atoi(atoi10); int ft10 = ft_atoi(atoi10);
+	int builtin11 = atoi(atoi11); int ft11 = ft_atoi(atoi11);
 
 	if (builtin1 != ft1)
 		printf("ft_atoi test 1 failed. Input \"%s\", expected: %d, got: %d\n", atoi1, builtin1, ft1);
@@ -334,4 +338,8 @@ int main() {
 		printf("ft_atoi test 8 failed. Input \"%s\", expected: %d, got: %d\n", atoi8, builtin8, ft8);
 	if (builtin9 != ft9)
 		printf("ft_atoi test 9 failed. Input \"%s\", expected: %d, got: %d\n", atoi9, builtin9, ft9);
+	if (builtin10 != ft10)
+		printf("ft_atoi test 10 failed. Input \"%s\", expected: %d, got: %d\n", atoi10, builtin10, ft10);
+	if (builtin11 != ft11)
+		printf("ft_atoi test 11 failed. Input \"%s\", expected: %d, got: %d\n", atoi11, builtin11, ft11);
 }
