@@ -200,5 +200,35 @@ int main() {
 	if (strcmp(ft_strnstr(strtest, "sei76", 89), "sei762lkkls") != 0)
 		printf("ft_strnstr test failed, origin = %s, introduced = sei76, len = 89, expected %s but found something else.", strtest, "sei762lkkls");
 
-	// 
+	// ft_substr test
+	printf("Starting ft_substr tests...\n");
+
+	char sub[] = "Hi how are you.";
+	
+	char *subtest1 = ft_substr(sub, 1, 5);
+	char *subtest2 = ft_substr(sub, 5, 40);
+	char *subtest3 = ft_substr(sub, 5, 2);
+
+	if (subtest1 == NULL)
+		printf("ft_substr subtest1 malloc failed.\n");
+	if (subtest2 == NULL)
+		printf("ft_substr subtest2 malloc failed.\n");
+	if (subtest3 == NULL)
+		printf("ft_substr subtest3 malloc failed.\n");
+
+	if (subtest1 && strcmp(subtest1, "i how") != 0)
+		printf("ft_substr test failed for start %d and len %d.\nIntroduced: %s, Expected: %s, Got: %s\n", 1, 5, sub, "i how", subtest1);
+	if (subtest2 && strcmp(subtest2, "w are you.") != 0)
+		printf("ft_substr test failed for start %d and len %d.\nIntroduced: %s, Expected: %s, Got: %s\n", 5, 40, sub, "w are you.", subtest2);
+	if (subtest3 && strcmp(subtest3, "w ") != 0)
+		printf("ft_substr test failed for start %d and len %d.\nIntroduced: %s, Expected: %s, Got: %s\n", 5, 2, sub, "w ", subtest3);
+
+	if (subtest1 != NULL) free(subtest1);
+	if (subtest2 != NULL) free(subtest2);
+	if (subtest3 != NULL) free(subtest3);
+
+	// ft_strjoin test
+	printf("Starting ft_strjoin tests...\n");
+
+
 }
