@@ -292,4 +292,46 @@ int main() {
 	if (trim2 != NULL) free(trim2);
 	if (trim3 != NULL) free(trim3);
 	if (trim4 != NULL) free(trim4);
+
+	// ft_atoi test
+	printf("Starting ft_atoi tests...\n");
+
+	char atoi1[] = "--8828794788";
+	char atoi2[] = "-56745";
+	char atoi3[] = "++57895";
+	char atoi4[] = "+64765";
+	char atoi5[] = "78655";
+	char atoi6[] = "   +839t8937";
+	char atoi7[] = "+++6334  33";
+	char atoi8[] = "  43r";
+	char atoi9[] = " \t\v\n\v\v\v\t  \n   -37755_4";
+
+	int builtin1 = atoi(atoi1); int ft1 = ft_atoi(atoi1);
+	int builtin2 = atoi(atoi2); int ft2 = ft_atoi(atoi2);
+	int builtin3 = atoi(atoi3); int ft3 = ft_atoi(atoi3);
+	int builtin4 = atoi(atoi4); int ft4 = ft_atoi(atoi4);
+	int builtin5 = atoi(atoi5); int ft5 = ft_atoi(atoi5);
+	int builtin6 = atoi(atoi6); int ft6 = ft_atoi(atoi6);
+	int builtin7 = atoi(atoi7); int ft7 = ft_atoi(atoi7);
+	int builtin8 = atoi(atoi8); int ft8 = ft_atoi(atoi8);
+	int builtin9 = atoi(atoi9); int ft9 = ft_atoi(atoi9);
+
+	if (builtin1 != ft1)
+		printf("ft_atoi test 1 failed. Input \"%s\", expected: %d, got: %d\n", atoi1, builtin1, ft1);
+	if (builtin2 != ft2)
+		printf("ft_atoi test 2 failed. Input \"%s\", expected: %d, got: %d\n", atoi2, builtin2, ft2);
+	if (builtin3 != ft3)
+		printf("ft_atoi test 3 failed. Input \"%s\", expected: %d, got: %d\n", atoi3, builtin3, ft3);
+	if (builtin4 != ft4)
+		printf("ft_atoi test 4 failed. Input \"%s\", expected: %d, got: %d\n", atoi4, builtin4, ft4);
+	if (builtin5 != ft5)
+		printf("ft_atoi test 5 failed. Input \"%s\", expected: %d, got: %d\n", atoi5, builtin5, ft5);
+	if (builtin6 != ft6)
+		printf("ft_atoi test 6 failed. Input \"%s\", expected: %d, got: %d\n", atoi6, builtin6, ft6);
+	if (builtin7 != ft7)
+		printf("ft_atoi test 7 failed. Input \"%s\", expected: %d, got: %d\n", atoi7, builtin7, ft7);
+	if (builtin8 != ft8)
+		printf("ft_atoi test 8 failed. Input \"%s\", expected: %d, got: %d\n", atoi8, builtin8, ft8);
+	if (builtin9 != ft9)
+		printf("ft_atoi test 9 failed. Input \"%s\", expected: %d, got: %d\n", atoi9, builtin9, ft9);
 }
