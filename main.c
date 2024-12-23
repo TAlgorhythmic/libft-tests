@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 static void	clean(char **arr)
 {
@@ -24,6 +25,14 @@ int len(char **strs) {
 
 int check(int i1, int i2) {
 	return (i1 == i2 || (i1 > 0 && i2 > 0));
+}
+
+char ft_strmapi_test(unsigned int n, char ch) {
+	return (ch + n);
+}
+
+void ft_striteri_test(unsigned int i, char *s) {
+	*s = 'a' + i;
 }
 
 int main() {
@@ -385,4 +394,29 @@ int main() {
 	if (itoatest3 != NULL) free(itoatest3);
 	if (itoatest4 != NULL) free(itoatest4);
 	if (itoatest5 != NULL) free(itoatest5);
+
+	// ft_strmapi test
+	printf("Starting ft_strmapi test...\n");
+
+	char mapstr[] = "123";
+	char *testmapstr = ft_strmapi(mapstr, &ft_strmapi_test);
+
+	if (testmapstr == NULL)
+		printf("ft_strmapi malloc failled.\n");
+
+	if (testmapstr && strcmp(testmapstr, "135") != 0)
+		printf("ft_strmapi test failed, introduced \"%s\", expected \"%s\", got \"%s\"\n", mapstr, "135", testmapstr);
+
+	if (testmapstr != NULL) free(testmapstr);
+
+	// ft_striteri test
+	printf("Starting ft_striteri test...\n");
+
+	char iteristr[] = "suhdf87sfvc";
+
+	ft_striteri(iteristr, &ft_striteri_test);
+	if (strcmp(iteristr, "abcdefghijk") != 0)
+		printf("ft_striteri test failed, expected \"abcdefghijk\" but got \"%s\" instead\n", iteristr);
+
+	// 
 }
