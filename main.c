@@ -418,5 +418,13 @@ int main() {
 	if (strcmp(iteristr, "abcdefghijk") != 0)
 		printf("ft_striteri test failed, expected \"abcdefghijk\" but got \"%s\" instead\n", iteristr);
 
+	// ft_putnbr_fd test
+	printf("Starting ft_putnbr_fd test...\n");
+
+	printf("Writing output in stdout\n");
+	ft_putnbr_fd(12345, 1);
+	ft_putchar_fd('\n', 1);
+	printf("If the output was \"12345\" then test passed.\n");
+
 	// 
 }
