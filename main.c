@@ -371,14 +371,14 @@ int main() {
 
 	if (itoatest1 && strcmp(itoatest1, "2147483647") != 0)
 		printf("ft_itoa test 1 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
-	if (itoatest2 && strcmp(itoatest1, "-2147483648") != 0)
-		printf("ft_itoa test 2 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
-	if (itoatest3 && strcmp(itoatest1, "4225") != 0)
-		printf("ft_itoa test 3 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
-	if (itoatest4 && strcmp(itoatest1, "-9882674") != 0)
-		printf("ft_itoa test 4 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
-	if (itoatest5 && strcmp(itoatest1, "0") != 0)
-		printf("ft_itoa test 5 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+	if (itoatest2 && strcmp(itoatest2, "-2147483648") != 0)
+		printf("ft_itoa test 2 failed, introduced %d but got \"%s\"\n", itoa2, itoatest2);
+	if (itoatest3 && strcmp(itoatest3, "4225") != 0)
+		printf("ft_itoa test 3 failed, introduced %d but got \"%s\"\n", itoa3, itoatest3);
+	if (itoatest4 && strcmp(itoatest4, "-9882674") != 0)
+		printf("ft_itoa test 4 failed, introduced %d but got \"%s\"\n", itoa4, itoatest4);
+	if (itoatest5 && strcmp(itoatest5, "0") != 0)
+		printf("ft_itoa test 5 failed, introduced %d but got \"%s\"\n", itoa5, itoatest5);
 
 	if (itoatest1 != NULL) free(itoatest1);
 	if (itoatest2 != NULL) free(itoatest2);
