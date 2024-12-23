@@ -342,4 +342,47 @@ int main() {
 		printf("ft_atoi test 10 failed. Input \"%s\", expected: %d, got: %d\n", atoi10, builtin10, ft10);
 	if (builtin11 != ft11)
 		printf("ft_atoi test 11 failed. Input \"%s\", expected: %d, got: %d\n", atoi11, builtin11, ft11);
+
+	// ft_itoa test
+	printf("Starting ft_itoa tests...\n");
+
+	int itoa1 = 2147483647;
+	int itoa2 = -2147483648;
+	int itoa3 = 4225;
+	int itoa4 = -9882674;
+	int itoa5 = 0;
+
+	char *itoatest1 = ft_itoa(itoa1);
+	char *itoatest2 = ft_itoa(itoa2);
+	char *itoatest3 = ft_itoa(itoa3);
+	char *itoatest4 = ft_itoa(itoa4);
+	char *itoatest5 = ft_itoa(itoa5);
+
+	if (itoatest1 == NULL)
+		printf("ft_itoa malloc failed for test 1\n");
+	if (itoatest2 == NULL)
+		printf("ft_itoa malloc failed for test 2\n");
+	if (itoatest3 == NULL)
+		printf("ft_itoa malloc failed for test 3\n");
+	if (itoatest4 == NULL)
+		printf("ft_itoa malloc failed for test 4\n");
+	if (itoatest5 == NULL)
+		printf("ft_itoa malloc failed for test 5\n");
+
+	if (itoatest1 && strcmp(itoatest1, "2147483647") != 0)
+		printf("ft_itoa test 1 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+	if (itoatest2 && strcmp(itoatest1, "-2147483648") != 0)
+		printf("ft_itoa test 2 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+	if (itoatest3 && strcmp(itoatest1, "4225") != 0)
+		printf("ft_itoa test 3 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+	if (itoatest4 && strcmp(itoatest1, "-9882674") != 0)
+		printf("ft_itoa test 4 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+	if (itoatest5 && strcmp(itoatest1, "0") != 0)
+		printf("ft_itoa test 5 failed, introduced %d but got \"%s\"\n", itoa1, itoatest1);
+
+	if (itoatest1 != NULL) free(itoatest1);
+	if (itoatest2 != NULL) free(itoatest2);
+	if (itoatest3 != NULL) free(itoatest3);
+	if (itoatest4 != NULL) free(itoatest4);
+	if (itoatest5 != NULL) free(itoatest5);
 }
